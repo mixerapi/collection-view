@@ -99,7 +99,7 @@ class Serializer
     }
 
     /**
-     * @param ResultSet $resultSet the data to be converted into a HAL array
+     * @param \Cake\ORM\ResultSet $resultSet the data to be converted into a HAL array
      * @return array
      */
     private function collection(ResultSet $resultSet): array

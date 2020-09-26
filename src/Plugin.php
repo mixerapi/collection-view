@@ -3,13 +3,11 @@ declare(strict_types=1);
 
 namespace MixerApi\CollectionView;
 
-use Cake\Console\CommandCollection;
 use Cake\Core\BasePlugin;
 use Cake\Core\Configure;
 use Cake\Core\PluginApplicationInterface;
 use Cake\Event\Event;
 use Cake\Event\EventManager;
-use Cake\Http\Response;
 
 class Plugin extends BasePlugin
 {

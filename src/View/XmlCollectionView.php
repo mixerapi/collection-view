@@ -67,7 +67,7 @@ class XmlCollectionView extends SerializedView
     {
         parent::initialize();
         $this->loadHelper('Paginator', [
-            'templates' => 'MixerApi/CollectionView.paginator-template'
+            'templates' => 'MixerApi/CollectionView.paginator-template',
         ]);
     }
 
