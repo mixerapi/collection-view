@@ -54,7 +54,7 @@ public function initialize(): void
 ## Usage
 
 That's it, you're done. Perform `application/xml` or `application/json` requests as normal. You may also request by 
-`.xml` or `.json` extensions (assuming you've enabled them in your `config/routes.php`. This plugin will only modify 
+`.xml` or `.json` extensions (assuming you've enabled them in your `config/routes.php`). This plugin will only modify 
 collections (e.g. controller::index action) requests, not item (e.g. controller::view action) requests. 
 
 JSON Sample:
