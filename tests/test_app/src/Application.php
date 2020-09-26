@@ -20,4 +20,14 @@ class Application extends BaseApplication
     {
         $this->addPlugin('MixerApi/CollectionView');
     }
+
+    public function routes(RouteBuilder $routes): void
+    {
+        $routes->scope('/', function (RouteBuilder $builder) {
+            $builder->fallbacks();
+            $builder->setExtensions(['json','xml']);
+            $builder->resources('Actors');
+        });
+        parent::routes($routes);
+    }
 }
