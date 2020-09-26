@@ -30,13 +30,13 @@ class Configuration
     /**
      * Sets request handler views for json and xml
      *
-     * @param Controller $controller
-     * @return void
+     * @param \Cake\Controller\Controller $controller Controller instance
+     * @return \Cake\Controller\Controller
      */
-    public function views(Controller $controller): void
+    public function views(Controller $controller): Controller
     {
         if (!$controller->components()->has('RequestHandler')) {
-            return;
+            return $controller;
         }
         $controller->RequestHandler->setConfig(
             'viewClassMap.json',
@@ -46,5 +46,7 @@ class Configuration
             'viewClassMap.xml',
             'MixerApi/CollectionView.XmlCollection'
         );
+
+        return $controller;
     }
 }
