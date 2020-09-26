@@ -12,6 +12,13 @@
 
 A simple Collection View for displaying configurable pagination meta data in JSON or XML collection responses.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Configuration](#configuration)
+
 ## Installation 
 
 ```bash
@@ -46,9 +53,9 @@ public function initialize(): void
 
 ## Usage
 
-Perform `application/xml` or `application/json` requests as normal. You may also request view `.xml` or `.json` 
-extension. This plugin will only modify collection (e.g. controller index action) requests, not item (e.g. controller 
-view action) requests. 
+That's it, you're done. Perform `application/xml` or `application/json` requests as normal. You may also request by 
+`.xml` or `.json` extensions. This plugin will only modify collections (e.g. controller::index action) requests, not 
+item (e.g. controller::view action) requests. 
 
 JSON Sample:
 
@@ -122,11 +129,12 @@ XML Sample:
 </response>
 ```
 
-## Configuration (optional)
+## Configuration
 
-You can alter the names of the response keys, simply create a [config/collection_view.php](assets/collection_view.php)
-file. Using the example below we can change the `collection` key to `pagination`, `data` to `items`, and 
-alter some key names within our new pagination object. Just keep the mapped items `{{names}}` as-is. 
+This is optional. You can alter the names of the response keys, simply create a 
+[config/collection_view.php](assets/collection_view.php) file. Using the example below we can change the `collection` 
+key to `pagination`, `data` to `items`, and alter some key names within our new pagination object. Just keep the mapped 
+items `{{names}}` as-is. 
 
 ```php
 return [
