@@ -158,12 +158,12 @@ return [
 
 ## Unit Tests
 
-```bash
+```console
 vendor/bin/phpunit
 ```
 
 ## Code Standards
 
-```bash
+```console
 composer check
 ```
