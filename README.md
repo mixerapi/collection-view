@@ -61,13 +61,14 @@ collections (e.g. controller::index action) requests, not item (e.g. controller:
 ```json
 {
     "collection": {
-        "url": "\/actors",
-        "count": 2,
-        "total": 20,
-        "next": "\/?page=2",
-        "prev": "",
-        "first": "",
-        "last": "\/?page=10"
+        "url": "/films?page=3&direction=desc",
+        "count": 20,
+        "total": 1000,
+        "pages": 50,
+        "next": "/films?page=4",
+        "prev": "/films?page=2",
+        "first": "/films",
+        "last": "/films?page=50"
     },
     "data": [
         {
@@ -102,13 +103,14 @@ collections (e.g. controller::index action) requests, not item (e.g. controller:
 ```xml
 <response>
   <collection>
-    <url>/actors</url>
-    <count>2</count>
-    <total>20</total>
-    <next>/?page=2</next>
-    <prev/>
-    <first/>
-    <last>/?page=10</last>
+    <url>/films?page=3&amp;direction=desc</url>
+    <count>20</count>
+    <total>1000</total>
+    <pages>50</pages>
+    <next>/films?page=4</next>
+    <prev>/films?page=2</prev>
+    <first>/films</first>
+    <last>/films?page=50</last>
   </collection>
   <data>
     <id>1</id>
@@ -145,8 +147,9 @@ return [
     'CollectionView' => [
         'pagination' => '{{collection}}', // array that holds pagination data
         'pagination.url' => '{{url}}', // url of current page
-        'pagination.pageCount' => '{{count}}', // count on page
-        'pagination.totalCount' => '{{total}}', // total items
+        'pagination.pageCount' => '{{count}}', // items on the page
+        'pagination.totalCount' => '{{total}}', // total database records
+        'pagination.pages' => '{{pages}}', // total pages
         'pagination.next' => '{{next}}', // next page url
         'pagination.prev' => '{{prev}}', // previous page url
         'pagination.first' => '{{first}}', // first page url

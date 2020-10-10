@@ -114,6 +114,7 @@ class Serializer
         $collection = array_search('{{collection}}', $this->config);
         $url = array_search('{{url}}', $return[$collection]);
         $count = array_search('{{count}}', $return[$collection]);
+        $pages = array_search('{{pages}}', $return[$collection]);
         $total = array_search('{{total}}', $return[$collection]);
         $next = array_search('{{next}}', $return[$collection]);
         $prev = array_search('{{prev}}', $return[$collection]);
@@ -125,7 +126,10 @@ class Serializer
         $return[$collection][$url] = '';
 
         if ($this->request instanceof ServerRequest) {
-            $return[$collection][$url] = (string)$this->request->getPath();
+            $uri = $this->request->getUri();
+            $query = $uri->getQuery();
+            $return[$collection][$url] = $uri->getPath() ;
+            $return[$collection][$url].= !empty($query) ? '?' . $query : '';
         }
 
         if ($this->paginator instanceof PaginatorHelper) {
@@ -133,7 +137,12 @@ class Serializer
             $return[$collection][$prev] = (string)$this->paginator->prev();
             $return[$collection][$first] = (string)$this->paginator->first();
             $return[$collection][$last] = (string)$this->paginator->last();
-            $return[$collection][$total] = intval($this->paginator->counter());
+            $return[$collection][$pages] = intval($this->paginator->total());
+            $return[$collection][$total] = intval($this->paginator->param('count'));
+        }
+
+        if (empty($return[$collection][$first]) && !empty($return[$collection][$url])) {
+            $return[$collection][$first] = $return[$collection][$url];
         }
 
         $return[$data] = $resultSet->toArray();

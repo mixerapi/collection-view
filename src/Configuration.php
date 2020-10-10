@@ -20,6 +20,7 @@ class Configuration
             'collection.url' => '{{url}}',
             'collection.count' => '{{count}}',
             'collection.total' => '{{total}}',
+            'collection.pages' => '{{pages}}',
             'collection.next' => '{{next}}',
             'collection.prev' => '{{prev}}',
             'collection.first' => '{{first}}',
