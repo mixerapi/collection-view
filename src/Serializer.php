@@ -128,8 +128,8 @@ class Serializer
         if ($this->request instanceof ServerRequest) {
             $uri = $this->request->getUri();
             $query = $uri->getQuery();
-            $return[$collection][$url] = $uri->getPath() ;
-            $return[$collection][$url].= !empty($query) ? '?' . $query : '';
+            $return[$collection][$url] = $uri->getPath();
+            $return[$collection][$url] .= !empty($query) ? '?' . $query : '';
         }
 
         if ($this->paginator instanceof PaginatorHelper) {
