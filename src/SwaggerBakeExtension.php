@@ -48,6 +48,9 @@ class SwaggerBakeExtension
         if (!class_exists(\SwaggerBake\Lib\Swagger::class)) {
             return $event->getSubject();
         }
+        if (!class_exists(\SwaggerBake\Lib\OpenApi\SchemaProperty::class)) {
+            return null;
+        }
 
         $config = Configure::read('CollectionView');
 
@@ -68,10 +71,9 @@ class SwaggerBakeExtension
         $last = array_search('{{last}}', $keys[$collection]);
         $data = array_search('{{data}}', $keys);
 
-        $collection = (new \SwaggerBake\Lib\OpenApi\Schema())
-            ->setName('Generic-Collection')
+        $pagination = (new \SwaggerBake\Lib\OpenApi\Schema())
+            ->setName($collection)
             ->setType('object')
-            ->setVendorProperty('x-data-element', $data)
             ->pushProperty($this->buildProperty($url, 'string', '/collection', 'url'))
             ->pushProperty($this->buildProperty($url, 'string', '/collection', 'url'))
             ->pushProperty($this->buildProperty($count, 'integer', 50))
@@ -92,7 +94,14 @@ class SwaggerBakeExtension
 
         $swagger = $event->getSubject();
         $array = $swagger->getArray();
+
+        $collection = (new \SwaggerBake\Lib\OpenApi\Schema())
+            ->setType('object')
+            ->pushProperty($pagination)
+            ->setVendorProperty('x-data-element', $data);
+
         $array['x-swagger-bake']['components']['schemas']['Generic-Collection'] = $collection;
+
         $swagger->setArray($array);
 
         return $swagger;
