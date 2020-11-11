@@ -13,6 +13,7 @@ use Cake\Event\EventManager;
  * Adds CollectionView as an OpenAPI schema to SwaggerBake
  *
  * @package MixerApi\CollectionView
+ * @codeCoverageIgnore
  */
 class SwaggerBakeExtension
 {
