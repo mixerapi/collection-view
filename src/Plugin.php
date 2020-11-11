@@ -37,5 +37,7 @@ class Plugin extends BasePlugin
                 $controller = $event->getSubject();
                 $configuration->views($controller);
             });
+
+        (new SwaggerBakeExtension())->listen();
     }
 }
