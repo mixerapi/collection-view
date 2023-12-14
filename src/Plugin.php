@@ -13,38 +13,28 @@ class Plugin extends BasePlugin
 {
     /**
      * Plugin name.
-     *
-     * @var string
      */
-    protected $name = 'MixerApi/CollectionView';
+    protected ?string $name = 'MixerApi/CollectionView';
 
     /**
      * Console middleware
-     *
-     * @var bool
      */
-    protected $consoleEnabled = true;
+    protected bool $consoleEnabled = true;
 
     /**
      * Enable middleware
-     *
-     * @var bool
      */
-    protected $middlewareEnabled = true;
+    protected bool $middlewareEnabled = true;
 
     /**
      * Register container services
-     *
-     * @var bool
      */
-    protected $servicesEnabled = true;
+    protected bool $servicesEnabled = true;
 
     /**
      * Load routes or not
-     *
-     * @var bool
      */
-    protected $routesEnabled = true;
+    protected bool $routesEnabled = true;
 
     /**
      * @param \Cake\Core\PluginApplicationInterface $app PluginApplicationInterface
