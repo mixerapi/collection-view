@@ -123,15 +123,23 @@ class Serializer
         $return[$collection][$url] = '';
 
         if ($this->request instanceof ServerRequest) {
-            $return[$collection][$url] = (string)$this->request->getPath();
+            $uri = $this->request->getUri();
+            $query = $uri->getQuery();
+            $return[$collection][$url] = $uri->getPath();
+            $return[$collection][$url] .= !empty($query) ? '?' . $query : '';
         }
 
         if ($this->paginator instanceof PaginatorHelper) {
-            $return[$collection][$next] = (string)$this->paginator->next();
-            $return[$collection][$prev] = (string)$this->paginator->prev();
-            $return[$collection][$first] = (string)$this->paginator->first();
-            $return[$collection][$last] = (string)$this->paginator->last();
-            $return[$collection][$total] = intval($this->paginator->counter());
+            $return[$collection][$next] = $this->paginator->next();
+            $return[$collection][$prev] = $this->paginator->prev();
+            $return[$collection][$first] = $this->paginator->first();
+            $return[$collection][$last] = $this->paginator->last();
+            $return[$collection][$pages] = $this->paginator->total();
+            $return[$collection][$total] = intval($this->paginator->param('count'));
+        }
+
+        if (empty($return[$collection][$first]) && !empty($return[$collection][$url])) {
+            $return[$collection][$first] = $return[$collection][$url];
         }
 
         $return[$data] = $resultSet->toArray();

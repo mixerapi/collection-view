@@ -12,27 +12,27 @@ use Cake\Event\EventManager;
 class Plugin extends BasePlugin
 {
     /**
-     * Plugin name.
+     * @inheritDoc
      */
     protected ?string $name = 'MixerApi/CollectionView';
 
     /**
-     * Console middleware
+     * @inheritDoc
      */
     protected bool $consoleEnabled = true;
 
     /**
-     * Enable middleware
+     * @inheritDoc
      */
     protected bool $middlewareEnabled = true;
 
     /**
-     * Register container services
+     * @inheritDoc
      */
     protected bool $servicesEnabled = true;
 
     /**
-     * Load routes or not
+     * @inheritDoc
      */
     protected bool $routesEnabled = true;
 
