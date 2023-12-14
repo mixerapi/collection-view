@@ -96,7 +96,7 @@ class Serializer
     }
 
     /**
-     * @param \Cake\ORM\PaginatedResultSet $resultSet the data to be converted into a HAL array
+     * @param \Cake\Datasource\Paging\PaginatedResultSet $resultSet the data to be converted into a HAL array
      * @return array
      */
     private function collection(PaginatedResultSet $resultSet): array
