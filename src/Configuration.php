@@ -38,6 +38,8 @@ class Configuration
     public function views(Controller $controller): Controller
     {
         if (!$controller->components()->has('RequestHandler')) {
+            Configure::write('viewClassMap.json', 'MixerApi/CollectionView.JsonCollection');
+            Configure::write('viewClassMap.xml', 'MixerApi/CollectionView.XmlCollection');
             return $controller;
         }
         $controller->RequestHandler->setConfig(

@@ -9,22 +9,14 @@ use MixerApi\CollectionView\Serializer;
 
 class JsonCollectionView extends JsonView
 {
-    /**
-     * @var string
-     */
-    protected $layoutPath = 'json';
+    protected string $layoutPath = 'json';
 
-    /**
-     * @var string
-     */
-    protected $subDir = 'json';
+    protected string $subDir = 'json';
 
     /**
      * Response type.
-     *
-     * @var string
      */
-    protected $_responseType = 'json';
+    protected string $_responseType = 'json';
 
     /**
      * Default config options.
@@ -37,9 +29,8 @@ class JsonCollectionView extends JsonView
      *   normal view template will be rendered.
      * - `jsonOptions`: Options for json_encode(). For e.g. `JSON_HEX_TAG | JSON_HEX_APOS`.
      *
-     * @var array
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'serialize' => null,
         'jsonOptions' => null,
     ];

@@ -5,7 +5,7 @@ namespace MixerApi\CollectionView;
 
 use Adbar\Dot;
 use Cake\Core\Configure;
-use Cake\Datasource\ResultSetInterface;
+use Cake\Datasource\Paging\PaginatedResultSet;
 use Cake\Http\ServerRequest;
 use Cake\Utility\Xml;
 use Cake\View\Helper\PaginatorHelper;
@@ -49,7 +49,7 @@ class Serializer
         $this->paginator = $paginator;
         $this->config = Configure::read('CollectionView');
 
-        if ($serialize instanceof ResultSetInterface) {
+        if ($serialize instanceof PaginatedResultSet) {
             $this->data = $this->collection($serialize);
         } else {
             $this->data = $serialize;
@@ -96,10 +96,10 @@ class Serializer
     }
 
     /**
-     * @param \Cake\Datasource\ResultSetInterface $resultSet the data to be converted into a HAL array
+     * @param \Cake\ORM\PaginatedResultSet $resultSet the data to be converted into a HAL array
      * @return array
      */
-    private function collection(ResultSetInterface $resultSet): array
+    private function collection(PaginatedResultSet $resultSet): array
     {
         $dot = new Dot();
         foreach ($this->config as $key => $value) {
@@ -123,23 +123,15 @@ class Serializer
         $return[$collection][$url] = '';
 
         if ($this->request instanceof ServerRequest) {
-            $uri = $this->request->getUri();
-            $query = $uri->getQuery();
-            $return[$collection][$url] = $uri->getPath();
-            $return[$collection][$url] .= !empty($query) ? '?' . $query : '';
+            $return[$collection][$url] = (string)$this->request->getPath();
         }
 
         if ($this->paginator instanceof PaginatorHelper) {
-            $return[$collection][$next] = $this->paginator->next();
-            $return[$collection][$prev] = $this->paginator->prev();
-            $return[$collection][$first] = $this->paginator->first();
-            $return[$collection][$last] = $this->paginator->last();
-            $return[$collection][$pages] = $this->paginator->total();
-            $return[$collection][$total] = intval($this->paginator->param('count'));
-        }
-
-        if (empty($return[$collection][$first]) && !empty($return[$collection][$url])) {
-            $return[$collection][$first] = $return[$collection][$url];
+            $return[$collection][$next] = (string)$this->paginator->next();
+            $return[$collection][$prev] = (string)$this->paginator->prev();
+            $return[$collection][$first] = (string)$this->paginator->first();
+            $return[$collection][$last] = (string)$this->paginator->last();
+            $return[$collection][$total] = intval($this->paginator->counter());
         }
 
         $return[$data] = $resultSet->toArray();

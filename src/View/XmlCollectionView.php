@@ -9,31 +9,21 @@ use MixerApi\CollectionView\Serializer;
 
 class XmlCollectionView extends SerializedView
 {
-    /**
-     * @var string
-     */
-    protected $layoutPath = 'xml';
+    protected string $layoutPath = 'xml';
 
-    /**
-     * @var string
-     */
-    protected $subDir = 'xml';
+    protected string $subDir = 'xml';
 
     /**
      * Response type.
-     *
-     * @var string
      */
-    protected $_responseType = 'xml';
+    protected string $_responseType = 'xml';
 
     /**
      * Option to allow setting an array of custom options for Xml::fromArray()
      *
      * For e.g. 'format' as 'attributes' instead of 'tags'.
-     *
-     * @var array|null
      */
-    protected $xmlOptions;
+    protected ?array $xmlOptions;
 
     /**
      * Default config options.
@@ -48,10 +38,9 @@ class XmlCollectionView extends SerializedView
      *   For e.g. 'format' as 'attributes' instead of 'tags'.
      * - `rootNode`: Root node name. Defaults to "response".
      *
-     * @var array
      * @psalm-var array{serialize:string|bool|null, xmlOptions: int|null, rootNode: string|null}
      */
-    protected $_defaultConfig = [
+    protected array $_defaultConfig = [
         'serialize' => null,
         'xmlOptions' => null,
         'rootNode' => null,
